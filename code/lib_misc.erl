@@ -1,5 +1,5 @@
 -module(lib_misc).
--export([for/3, qsort/1, pythag/1, perms/1, max/2, filter/2, odds_and_evens_acc/1]).
+-export([for/3, qsort/1, pythag/1, perms/1, max/2, filter/2, odds_and_evens_acc/1, sqrt/1]).
 
 for(Max, Max, F) -> [F(Max)];
 for(I, Max, F)   -> [F(I)|for(I+1, Max, F)].
@@ -43,3 +43,8 @@ odds_and_evens_acc([H|T], Odds, Evens) ->
     end;
 odds_and_evens_acc([], Odds, Evens) ->
     {lists:reverse(Odds), lists:reverse(Evens)}.
+
+sqrt(X) when X < 0 ->
+    erlang:error({sqareRootNegativeArgument, X});
+sqrt(X) ->
+    math:sqrt(X).
